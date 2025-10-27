@@ -18,6 +18,7 @@ Embed the graph in your mods description by replacing `{SECTION}` and `{ID}` wit
 - `section`: GameBanana section type. Examples: `tools`, `mods` (find it in your GameBanana URL)
 - `id`: Your submission ID (also find it in your GameBanana URL)
 - `theme`: `light`, `dark`, or `trans` (transparent, optional, defaults to `light`)
+- For GameBanana, I recommend the trans theme.
 
 ## Notes
 
@@ -44,7 +45,9 @@ This project uses design elements adapted from [star-history](https://github.com
 
 For Casual Preloader (Tools #19049):
 
-Dark (recommended): `https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark`
+Dark: `https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark`
+
+Transparent theme uses the same white text.
 
 ![Example Graph](https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark)
 
