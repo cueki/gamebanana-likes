@@ -6,6 +6,7 @@ import { scaleTime, scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 import { line, curveMonotoneX } from 'd3-shape';
 import { axisBottom, axisLeft } from 'd3-axis';
+import { optimize } from 'svgo';
 import addFont from './addFont.js';
 
 export default async function handler(req, res) {
@@ -349,13 +350,15 @@ export default async function handler(req, res) {
       .attr('text-anchor', 'end')
       .text('inspired by star-history.com');
 
-    // Extract the SVG HTML
     const svgHTML = svgElement.outerHTML;
+    const optimized = optimize(svgHTML, {
+      multipass: true,
+    }).data;
 
-    // Cache for 1 hour
+    // cache for 1 hour
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600');
-    res.status(200).send(svgHTML);
+    res.status(200).send(optimized);
 
   } catch (error) {
     console.error('Error generating graph:', error);
