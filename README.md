@@ -6,7 +6,7 @@ A serverless API that generates a star-history style graph for GameBanana submis
 
 ## Usage
 
-Embed the graph in your README or webpage by replacing `{SECTION}` and `{ID}` with your GameBanana submission details:
+Embed the graph in your mods description by replacing `{SECTION}` and `{ID}` with your GameBanana submission details:
 
 ### HTML
 ```html
@@ -40,7 +40,7 @@ This project uses design elements adapted from [star-history](https://github.com
 - Typography and layout
 
 
-## Example
+## Markdown Example
 
 For Casual Preloader (Tools #19049):
 
@@ -49,5 +49,6 @@ Dark (recommended): `https://gamebanana-likes.vercel.app/api/graph?section=Tool&
 ![Example Graph](https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark)
 
 Light: `https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=light`
+
 ![Example Graph Light](https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=light)
 
