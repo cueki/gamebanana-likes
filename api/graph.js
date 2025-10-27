@@ -29,32 +29,46 @@ export default async function handler(req, res) {
       }
     }
 
-    // fetch likes
+    // fetch likes in parallel batches for speed
     const allLikes = [];
-    let page = 1;
-    let hasMorePages = true;
+    const batchSize = 5; // fetch 5 pages at once
+    const maxPages = 250;
+    let currentPage = 1;
+    let isComplete = false;
 
-    while (hasMorePages) {
-      const response = await fetch(
-        `https://gamebanana.com/apiv11/${section}/${id}/Likes?_nPage=${page}`
+    while (currentPage <= maxPages && !isComplete) {
+      // create batch of page requests
+      const pagesToFetch = [];
+      for (let i = 0; i < batchSize && currentPage + i <= maxPages; i++) {
+        pagesToFetch.push(currentPage + i);
+      }
+
+      // fetch all pages in this batch
+      const batchPromises = pagesToFetch.map(pageNum =>
+        fetch(`https://gamebanana.com/apiv11/${section}/${id}/Likes?_nPage=${pageNum}`)
+          .then(res => {
+            if (!res.ok) throw new Error(`GameBanana API returned ${res.status}`);
+            return res.json();
+          })
       );
 
-      if (!response.ok) {
-        throw new Error(`GameBanana API returned ${response.status}`);
+      const batchResults = await Promise.all(batchPromises);
+
+      // process batch results
+      for (const data of batchResults) {
+        if (data._aRecords && data._aRecords.length > 0) {
+          allLikes.push(...data._aRecords);
+          if (data._aMetadata._bIsComplete) {
+            isComplete = true;
+            break;
+          }
+        } else {
+          isComplete = true;
+          break;
+        }
       }
 
-      const data = await response.json();
-
-      if (data._aRecords && data._aRecords.length > 0) {
-        allLikes.push(...data._aRecords);
-        hasMorePages = !data._aMetadata._bIsComplete;
-        page++;
-      } else {
-        hasMorePages = false;
-      }
-
-      // safety limit
-      if (page > 250) break;
+      currentPage += batchSize;
     }
 
     if (allLikes.length === 0) {
