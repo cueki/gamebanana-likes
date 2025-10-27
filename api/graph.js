@@ -254,15 +254,10 @@ export default async function handler(req, res) {
       niceStep = 10 * magnitude;
     }
 
-    // generate tick values
+    // generate tick values only up to maxLikes
     tickValues = [];
-    for (let i = 0; i <= maxLikes; i += niceStep) {
-      tickValues.push(i);
-    }
-
-    // include the max value if it's close to the last tick
-    if (tickValues[tickValues.length - 1] < maxLikes * 0.9) {
-      tickValues.push(Math.ceil(maxLikes / niceStep) * niceStep);
+    for (let i = 0; i * niceStep <= maxLikes; i++) {
+      tickValues.push(i * niceStep);
     }
 
     const yAxisGenerator = axisLeft(yScale)
