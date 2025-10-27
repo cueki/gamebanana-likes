@@ -226,13 +226,19 @@ export default async function handler(req, res) {
     };
 
     let tickValues;
-    if (maxLikes < 100) {
+    if (maxLikes < 20) {
+      const step = 1;
+      tickValues = [];
+      for (let i = 0; i <= maxLikes; i += step) {
+        tickValues.push(i);
+      }
+    } else if (maxLikes < 200) {
       const step = 10;
       tickValues = [];
       for (let i = 0; i <= maxLikes; i += step) {
         tickValues.push(i);
       }
-    } else if (maxLikes < 1000) {
+    } else if (maxLikes < 2000) {
       const step = 100;
       tickValues = [];
       for (let i = 0; i <= maxLikes; i += step) {
