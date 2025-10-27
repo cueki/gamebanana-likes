@@ -176,7 +176,7 @@ export default async function handler(req, res) {
     const legendY = margin.top + 5;
 
     const legendTextLength = submissionName.length;
-    const legendWidth = legendTextLength * (xkcdCharWidth + 0.5) + colorBlockWidth + legendXPadding * 3 + 6;
+    const legendWidth = legendTextLength * xkcdCharWidth + colorBlockWidth + legendXPadding * 2 + 6;
     const legendHeight = xkcdCharHeight + legendYPadding * 2;
 
     const legend = svg.append('g').attr('class', 'legend');
