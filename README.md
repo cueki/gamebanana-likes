@@ -46,6 +46,7 @@ This project uses design elements adapted from [star-history](https://github.com
 ## Example
 
 For Casual Preloader (Tools #19049):
-- Dark (recommended): `https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark`
+
+Dark (recommended): `https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark`
 
 ![Example Graph](https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark)
