@@ -233,31 +233,36 @@ export default async function handler(req, res) {
       return `${n}`;
     };
 
+    // calculate nice tick values, limiting to max ~8 ticks to avoid crowding
+    const maxTicks = 8;
     let tickValues;
-    if (maxLikes < 20) {
-      const step = 1;
-      tickValues = [];
-      for (let i = 0; i <= maxLikes; i += step) {
-        tickValues.push(i);
-      }
-    } else if (maxLikes < 200) {
-      const step = 10;
-      tickValues = [];
-      for (let i = 0; i <= maxLikes; i += step) {
-        tickValues.push(i);
-      }
-    } else if (maxLikes < 2000) {
-      const step = 100;
-      tickValues = [];
-      for (let i = 0; i <= maxLikes; i += step) {
-        tickValues.push(i);
-      }
+
+    // find a nice step size
+    const roughStep = maxLikes / maxTicks;
+    const magnitude = Math.pow(10, Math.floor(Math.log10(roughStep)));
+    const residual = roughStep / magnitude;
+
+    // round to nice numbers: 1, 2, 5, or 10
+    let niceStep;
+    if (residual <= 1) {
+      niceStep = magnitude;
+    } else if (residual <= 2) {
+      niceStep = 2 * magnitude;
+    } else if (residual <= 5) {
+      niceStep = 5 * magnitude;
     } else {
-      const step = 1000;
-      tickValues = [];
-      for (let i = 0; i <= maxLikes; i += step) {
-        tickValues.push(i);
-      }
+      niceStep = 10 * magnitude;
+    }
+
+    // generate tick values
+    tickValues = [];
+    for (let i = 0; i <= maxLikes; i += niceStep) {
+      tickValues.push(i);
+    }
+
+    // include the max value if it's close to the last tick
+    if (tickValues[tickValues.length - 1] < maxLikes * 0.9) {
+      tickValues.push(Math.ceil(maxLikes / niceStep) * niceStep);
     }
 
     const yAxisGenerator = axisLeft(yScale)
