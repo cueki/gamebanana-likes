@@ -77,19 +77,26 @@ export default async function handler(req, res) {
     }
 
     allLikes.sort((a, b) => a._tsDateAdded - b._tsDateAdded);
-    const timeSeriesMap = new Map();
 
-    allLikes.forEach((like, index) => {
-      const date = new Date(like._tsDateAdded * 1000);
-      const dateKey = date.toISOString().split('T')[0]; // YYYY-MM-DD
-      timeSeriesMap.set(dateKey, index + 1); // cumulative count
+    // sample data points for smoother curves
+    const maxRequestAmount = 15;
+    const timeSeries = [];
+
+    for (let i = 0; i < allLikes.length; ) {
+      const like = allLikes[i];
+      timeSeries.push({
+        x: new Date(like._tsDateAdded * 1000),
+        y: i + 1 // cumulative count
+      });
+      i += Math.floor(allLikes.length / maxRequestAmount) || 1;
+    }
+
+    // add final point with current total
+    const totalLikes = allLikes.length;
+    timeSeries.push({
+      x: new Date(),
+      y: totalLikes
     });
-
-    // convert to array with Date objects
-    const timeSeries = Array.from(timeSeriesMap.entries()).map(([date, count]) => ({
-      x: new Date(date),
-      y: count
-    }));
 
     const isDark = theme === 'dark';
     const isTrans = theme === 'trans';
