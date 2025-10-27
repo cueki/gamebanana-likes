@@ -16,7 +16,7 @@ If you have a lot of likes (500+) it might time-out initially, just refresh.
 
 ## Parameters
 
-- `section`: GameBanana section type. Examples: `Tool`, `Mod`, `Scipt`, `Sound`, `Spray` (find it in your GameBanana URL, notice the capitalization)
+- `section`: GameBanana section type. Examples: `Tool`, `Mod`, `Scipt`, `Sound`, `Spray`, `Wip` (find it in your GameBanana URL, notice the capitalization)
 - `id`: Your submission ID (also find it in your GameBanana URL)
 - `theme`: `light`, `dark`, or `trans` (transparent, optional, defaults to `light`)
 - For GameBanana, I recommend the trans theme.
