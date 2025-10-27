@@ -91,6 +91,7 @@ export default async function handler(req, res) {
     }));
 
     const isDark = theme === 'dark';
+    const isTrans = theme === 'trans';
     const width = 800;
     const height = 533; // 2:3 ratio like star-history
     const margin = { top: 60, right: 30, bottom: 50, left: 70 };
@@ -98,9 +99,9 @@ export default async function handler(req, res) {
     const chartHeight = height - margin.top - margin.bottom;
 
     // banana theme
-    const lineColor = isDark ? '#FFD700' : '#FFC600';
-    const bgColor = isDark ? '#0d1117' : '#ffffff';
-    const textColor = isDark ? '#ffffff' : '#000000';
+    const lineColor = isDark || isTrans ? '#FFD700' : '#FFC600';
+    const bgColor = isTrans ? 'transparent' : (isDark ? '#0d1117' : '#ffffff');
+    const textColor = isDark || isTrans ? '#ffffff' : '#000000';
     const labelColor = '#666666';
 
     const maxLikes = Math.max(...timeSeries.map(d => d.y), 1);

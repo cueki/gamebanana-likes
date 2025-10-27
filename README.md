@@ -17,7 +17,7 @@ Embed the graph in your mods description by replacing `{SECTION}` and `{ID}` wit
 
 - `section`: GameBanana section type. Examples: `tools`, `mods` (find it in your GameBanana URL)
 - `id`: Your submission ID (also find it in your GameBanana URL)
-- `theme`: `light` or `dark` (optional, defaults to `light`)
+- `theme`: `light`, `dark`, or `trans` (transparent, optional, defaults to `light`)
 
 ## Notes
 
