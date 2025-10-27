@@ -8,7 +8,8 @@ A serverless API that generates a star-history style graph for GameBanana submis
 
 Embed the graph in your mods description by replacing `{SECTION}` and `{ID}` with your GameBanana submission details:
 
-### HTML
+If you have a lot of likes (500+) it might time-out initially, just refresh.
+
 ```html
 <img src="https://gamebanana-likes.vercel.app/api/graph?section={SECTION}&id={ID}&theme={THEME}" alt="Likes Graph">
 ```
