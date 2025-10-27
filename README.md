@@ -13,12 +13,12 @@ Embed the graph in your README or webpage:
 
 ### Dark theme (recommended)
 ```html
-<img src="https://your-project.vercel.app/api/graph?section=Tool&id=19049&theme=dark" alt="Likes Graph">
+<img src="https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark" alt="Likes Graph">
 ```
 
 ### Light theme
 ```html
-<img src="https://your-project.vercel.app/api/graph?section=Tool&id=19049&theme=light" alt="Likes Graph">
+<img src="https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=light" alt="Likes Graph">
 ```
 
 ## Parameters
@@ -46,4 +46,6 @@ This project uses design elements adapted from [star-history](https://github.com
 ## Example
 
 For Casual Preloader (Tools #19049):
-- Dark (recommended): `https://your-project.vercel.app/api/graph?section=Tool&id=19049&theme=dark`
+- Dark (recommended): `https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark`
+
+![Example Graph](https://gamebanana-likes.vercel.app/api/graph?section=Tool&id=19049&theme=dark)
