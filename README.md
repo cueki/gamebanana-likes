@@ -11,15 +11,14 @@ Embed the graph in your mods description by replacing `{SECTION}` and `{ID}` wit
 If you have a lot of likes (500+) it might time-out initially, just refresh.
 
 ```html
-<img src="https://gamebanana-likes.vercel.app/api/graph?section={SECTION}&id={ID}&theme={THEME}" alt="Likes Graph">
+<img src="https://gamebanana-likes.vercel.app/api/graph?section={SECTION}&id={ID}" alt="Likes Graph">
 ```
 
 ## Parameters
 
-- `section`: GameBanana section type. Examples: `Tool`, `Mod`, `Scipt`, `Sound`, `Spray`, `Wip` (find it in your GameBanana URL, notice the capitalization)
-- `id`: Your submission ID (also find it in your GameBanana URL)
-- `theme`: `light`, `dark`, or `trans` (transparent, optional, defaults to `light`)
-- For GameBanana, I recommend the trans theme.
+- `section` **(required)**: GameBanana section type (e.g., `tool`, `mod`, `script`, `sound`, `spray`, `wip`). Case-insensitive and automatically de-pluralized, so `tools`, `Tools`, or `TOOLS` all work.
+- `id` **(required)**: Your submission ID (find it in your GameBanana URL)
+- `theme` *(optional)*: `light`, `dark`, or `trans` (transparent). Defaults to `trans`.
 
 ## Notes
 
