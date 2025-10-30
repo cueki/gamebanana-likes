@@ -10,11 +10,22 @@ import { optimize } from 'svgo';
 import addFont from './addFont.js';
 
 export default async function handler(req, res) {
-  const { section = 'Tool', id = '19049', theme = 'light' } = req.query;
+  const { id, theme = 'trans' } = req.query;
 
   if (!id) {
     return res.status(400).json({ error: 'Missing id parameter' });
   }
+
+  if (!req.query.section) {
+    return res.status(400).json({ error: 'Missing section parameter' });
+  }
+
+  // normalize (lowercase, de-pluralize, then capitalize)
+  let section = req.query.section.trim().toLowerCase();
+  if (section.endsWith('s')) {
+    section = section.slice(0, -1);
+  }
+  section = section.charAt(0).toUpperCase() + section.slice(1);
 
   try {
     // fetch submission info first to get the name
@@ -30,9 +41,9 @@ export default async function handler(req, res) {
       }
     }
 
-    // fetch likes in parallel batches for speed
+    // fetch likes in parallel batches
     const allLikes = [];
-    const batchSize = 5; // fetch 5 pages at once
+    const batchSize = 5; // 5 pages at once
     const maxPages = 250;
     let currentPage = 1;
     let isComplete = false;
