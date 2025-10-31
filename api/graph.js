@@ -93,6 +93,16 @@ export default async function handler(req, res) {
     const maxRequestAmount = 15;
     const timeSeries = [];
 
+    // add initial point one day before first like
+    if (allLikes.length > 0) {
+      const firstLikeDate = new Date(allLikes[0]._tsDateAdded * 1000);
+      firstLikeDate.setDate(firstLikeDate.getDate() - 1);
+      timeSeries.push({
+        x: firstLikeDate,
+        y: 0
+      });
+    }
+
     for (let i = 0; i < allLikes.length; ) {
       const like = allLikes[i];
       timeSeries.push({
