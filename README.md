@@ -11,7 +11,9 @@ Embed the graph in your mods description by replacing `{SECTION}` and `{ID}` wit
 If you have a lot of likes (500+) it might time-out initially, just refresh.
 
 ```html
-<img src="https://gamebanana-likes.vercel.app/api/graph?section={SECTION}&id={ID}" alt="Likes Graph">
+<a href="https://github.com/cueki/gamebanana-likes">
+  <img src="https://gamebanana-likes.vercel.app/api/graph?section={SECTION}&id={ID}" alt="Likes Graph">
+</a>
 ```
 
 ## Parameters
